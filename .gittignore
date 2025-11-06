@@ -1,0 +1,29 @@
+# Python files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual env.
+.venv/
+venv/
+env/
+
+# PyCharm settings
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Created files
+app/model.joblib
+
+# Data folder
+data/
