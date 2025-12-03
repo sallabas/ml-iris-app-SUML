@@ -23,7 +23,7 @@ jobs:
       run: pip install -r requirements.txt pytest
 
     - name: Run tests
-      run: pytest
+      run: PYTHONPATH=. pytest
 
     - name: Login to GHCR
       uses: docker/login-action@v2
