@@ -3,7 +3,7 @@ import streamlit as st
 from predict import predict_species
 
 st.set_page_config(page_title="Iris Prediction", layout="centered")
-st.title("Iris Flower Prediction")
+st.title("CHANGED TITLE")
 st.caption("Enter measurements and click Predict.")
 
 col1, col2 = st.columns(2)
