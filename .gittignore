@@ -27,3 +27,8 @@ app/model.joblib
 
 # Data folder
 data/
+
+# MLFlow
+mlruns/
+mlflow.db
+
