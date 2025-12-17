@@ -24,22 +24,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 
-
-# ======================
-# CONFIG
-# ======================
 VERSION = "v1.0.0"
 EXPERIMENT_NAME = "iris-model-zoo"
 REGISTERED_MODEL_NAME = "IrisModel"
 
 
 def train_model():
-    # MLflow experiment
     mlflow.set_experiment(EXPERIMENT_NAME)
 
-    # ======================
     # Load data
-    # ======================
     iris = load_iris(as_frame=True)
     df = iris.frame
 
@@ -50,9 +43,7 @@ def train_model():
         X, y, test_size=0.2, random_state=42
     )
 
-    # ======================
     # Model Zoo
-    # ======================
     models = {
         "RandomForest": RandomForestClassifier(
             n_estimators=100,
@@ -72,9 +63,7 @@ def train_model():
     os.makedirs("artifacts", exist_ok=True)
     os.makedirs("app", exist_ok=True)
 
-    # ======================
     # Training loop
-    # ======================
     for model_name, model in models.items():
         with mlflow.start_run(run_name=model_name) as run:
 
@@ -107,9 +96,7 @@ def train_model():
                 )
                 mlflow.log_metric("roc_auc", roc_auc)
 
-            # ======================
             # Artifacts
-            # ======================
             # Confusion Matrix
             cm = confusion_matrix(y_test, y_pred)
             plt.figure(figsize=(6, 4))
@@ -120,16 +107,13 @@ def train_model():
             plt.close()
             mlflow.log_artifact(cm_path)
 
-            # Classification Report
             report = classification_report(y_test, y_pred)
             report_path = f"artifacts/report_{model_name}.txt"
             with open(report_path, "w") as f:
                 f.write(report)
             mlflow.log_artifact(report_path)
 
-            # ======================
             # Best model tracking
-            # ======================
             if f1 > best_f1:
                 best_f1 = f1
                 best_model = model
@@ -147,9 +131,7 @@ def train_model():
                     registered_model_name=REGISTERED_MODEL_NAME
                 )
 
-    # ======================
     # Save best model locally
-    # ======================
     joblib.dump(best_model, "app/model.joblib")
 
     model_meta = {

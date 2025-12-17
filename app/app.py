@@ -4,16 +4,12 @@ import streamlit as st
 from predict import predict_species
 from pathlib import Path
 
-# ======================
-# Page config
-# ======================
+
 st.set_page_config(page_title="Iris Prediction", layout="centered")
 st.title("CHANGED TITLE")
 st.caption("Enter measurements and click Predict.")
 
-# ======================
 # Input form
-# ======================
 col1, col2 = st.columns(2)
 with col1:
     sepal_length = st.number_input("Sepal Length (cm)", 0.0, 10.0, 5.1, step=0.1)
@@ -28,9 +24,7 @@ if st.button("Predict"):
     )
     st.success(f"Predicted species: **{species.capitalize()}**")
 
-# ======================
 # Footer – MLflow metadata
-# ======================
 st.markdown("---")
 
 meta_path = Path("app/model_meta.json")
