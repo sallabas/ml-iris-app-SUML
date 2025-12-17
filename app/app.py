@@ -8,7 +8,7 @@ from pathlib import Path
 # Page config
 # ======================
 st.set_page_config(page_title="Iris Prediction", layout="centered")
-st.title("Iris Flower Prediction")
+st.title("CHANGED TITLE")
 st.caption("Enter measurements and click Predict.")
 
 # ======================
