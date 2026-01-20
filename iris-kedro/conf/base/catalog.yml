@@ -1,0 +1,11 @@
+iris_data:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/iris.csv
+
+best_model:
+  type: pickle.PickleDataset
+  filepath: app/model.joblib
+
+model_metadata:
+  type: json.JSONDataset
+  filepath: app/model_meta.json

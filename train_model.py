@@ -32,7 +32,6 @@ REGISTERED_MODEL_NAME = "IrisModel"
 def train_model():
     mlflow.set_experiment(EXPERIMENT_NAME)
 
-    # Load data
     iris = load_iris(as_frame=True)
     df = iris.frame
 
@@ -63,7 +62,6 @@ def train_model():
     os.makedirs("artifacts", exist_ok=True)
     os.makedirs("app", exist_ok=True)
 
-    # Training loop
     for model_name, model in models.items():
         with mlflow.start_run(run_name=model_name) as run:
 
